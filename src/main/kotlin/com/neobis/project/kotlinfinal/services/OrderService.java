@@ -5,6 +5,7 @@ import com.neobis.project.kotlinfinal.entities.OrderEntity;
 import com.neobis.project.kotlinfinal.models.Order;
 import com.neobis.project.kotlinfinal.models.OrderAndShipping;
 import com.neobis.project.kotlinfinal.models.Shipping;
+import com.neobis.project.kotlinfinal.repositories.OrderItemRepository;
 import com.neobis.project.kotlinfinal.repositories.OrderRepository;
 import com.neobis.project.kotlinfinal.exception.BadRequestException;
 import com.neobis.project.kotlinfinal.exception.RecordNotFoundException;
@@ -21,7 +22,7 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private CustomerService customerService;
+    OrderItemRepository orderItemRepository;
 
     @Autowired
     private ShippingService shippingService;
@@ -57,13 +58,6 @@ public class OrderService {
 
     public Order saveOrder(OrderAndShipping orderAndShipping) throws Exception {
 
-        // check customer id
-        try {
-            customerService.getCustomerById(orderAndShipping.getCustomerId());
-        } catch (RecordNotFoundException e) {
-            throw new BadRequestException();
-        }
-
         // add shipping
         Shipping shipping = shippingService.saveShipping(orderAndShipping.extractShipping());
 
@@ -77,6 +71,7 @@ public class OrderService {
 
     public void deleteOrderById(int orderId) {
         orderRepository.deleteById(orderId);
+
     }
 
 }

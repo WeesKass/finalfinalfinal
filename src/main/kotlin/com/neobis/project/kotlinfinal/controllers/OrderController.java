@@ -45,7 +45,7 @@ public class OrderController {
 
 
     // get order by order_id
-    @RequestMapping(value = "order{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Order getOrder(@PathVariable("id") int id) throws Exception {
         return orderService.getOrderById(id);
     }
@@ -63,5 +63,12 @@ public class OrderController {
     public Order postOrder(@RequestBody OrderAndShipping orderAndShipping) throws Exception {
         return orderService.saveOrder(orderAndShipping);
     }
+
+    @RequestMapping(value = "{id}",method = RequestMethod.DELETE)
+    public void deleteOrder(@PathVariable int id) throws Exception{
+        orderService.deleteOrderById(id);
+    }
+
+
 
 }

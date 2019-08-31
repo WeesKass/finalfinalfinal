@@ -22,7 +22,7 @@ public class AddressUserAndCustomer {
     private String country;
     private String other;
 
-    public Customer extractCustomer() { return new Customer(customerId, userId, addressId, customerName, customerEmail, paymentInfo);}
+   public Customer extractCustomer() { return new Customer(customerId, userId, addressId, customerName, customerEmail, paymentInfo);}
 
     public Address extractAddress() { return new Address(addressId, street, streetNo, unitNo, city, country, other);}
 

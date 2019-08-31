@@ -1,5 +1,7 @@
 package com.neobis.project.kotlinfinal.controllers;
 
+import com.neobis.project.kotlinfinal.models.AddressUserAndCustomer;
+import com.neobis.project.kotlinfinal.models.Customer;
 import com.neobis.project.kotlinfinal.models.Customer;
 import com.neobis.project.kotlinfinal.models.CustomerAndUser;
 import com.neobis.project.kotlinfinal.services.CustomerService;
@@ -17,8 +19,6 @@ public class CustomerController {
 
     @RequestMapping("/")
     public String defaultCustomer() {
-        //logger.info("You've hit the default endpoint");
-        //logger.debug("This is a debugging message for the default endpoint");
         return "Default customer endpoint";
     }
 
@@ -29,18 +29,23 @@ public class CustomerController {
         return customerService.getCustomerById(id);
     }
 
+    @RequestMapping(value = "/user{id}", method = RequestMethod.GET)
+    public Customer getCustomerByUserId(@PathVariable("id") int id) throws Exception {
+        return customerService.getCustomerByUserId(id);
+    }
+
 
     // update customer information
     @RequestMapping(method = RequestMethod.PUT)
-    public void putCustomer(@RequestBody CustomerAndUser customerAndUser) throws Exception {
-        customerService.saveCustomer(customerAndUser);
+    public void putCustomer(@RequestBody AddressUserAndCustomer addressUserAndCustomer) {
+        customerService.saveCustomer(addressUserAndCustomer);
     }
 
 
     // create new customer
     @RequestMapping(method = RequestMethod.POST)
-    public Customer postCustomer(@RequestBody CustomerAndUser customerAndUser) throws Exception {
-        return customerService.saveCustomer(customerAndUser);
+    public Customer postCustomer(@RequestBody AddressUserAndCustomer addressUserAndCustomer) {
+        return customerService.saveCustomer(addressUserAndCustomer);
     }
 
 
@@ -48,5 +53,6 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.DELETE)
     public void deleteCustomer(@PathVariable int id) {
         customerService.deleteCustomerById(id);
+
     }
 }

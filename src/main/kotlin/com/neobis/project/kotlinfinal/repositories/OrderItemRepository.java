@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItemEntity, OrderItemEntityPK> {
 
+
 }

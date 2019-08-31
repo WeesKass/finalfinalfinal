@@ -47,7 +47,6 @@ public class CustomerEntity {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "customer_id")
     public int getCustomerId() {
         return customerId;

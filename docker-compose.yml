@@ -1,29 +1,26 @@
-version: '3'
+#version: '3'
+#
+#services:
+#  kotlin-final-app:
+#    image: kotlin-final-app
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
+#    depends_on:
+#      - shop
+#    ports:
+#      - 8080:8080
+#    expose:
+#      - '8080'
+#    volumes:
+#      - /data/kotlin-final-app
 
+version: '3.3'
 services:
-  shop:
-    image: mysql:latest
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=shop
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=password
-    ports:
-      - 3636:3306
-    expose:
-      - '3636'
-    volumes:
-      - /data/mysql
   kotlin-final-app:
     image: kotlin-final-app
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    depends_on:
-      - shop
+    restart: always
     ports:
       - 8080:8080
     expose:
       - '8080'
-    volumes:
-      - /data/kotlin-final-app

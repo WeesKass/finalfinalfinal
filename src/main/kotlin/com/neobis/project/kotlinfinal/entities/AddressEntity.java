@@ -50,7 +50,6 @@ public class AddressEntity {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "address_id")
     public int getAddressId() {
         return addressId;

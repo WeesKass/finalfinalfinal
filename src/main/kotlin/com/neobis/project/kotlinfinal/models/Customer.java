@@ -2,8 +2,6 @@ package com.neobis.project.kotlinfinal.models;
 
 import com.neobis.project.kotlinfinal.entities.CustomerEntity;
 
-import javax.persistence.*;
-
 public class Customer {
 
     private int customerId;

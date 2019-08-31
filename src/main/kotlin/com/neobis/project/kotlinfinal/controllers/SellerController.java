@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
-import java.util.List;
 
 //Done
+
 @RestController
 @RequestMapping("/seller")
 public class SellerController {
@@ -24,6 +24,7 @@ public class SellerController {
 
 
     // get seller by seller_id
+
     @RequestMapping(method = RequestMethod.GET)
     public Seller getSellerById(@PathParam("id") int id) throws Exception {
         return sellerService.getSellerById(id);
@@ -31,22 +32,25 @@ public class SellerController {
 
 
     // update seller information
+
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateSeller(@RequestBody SellerAndUser sellerAndUser) throws Exception {
+    public void updateSeller(@RequestBody SellerAndUser sellerAndUser){
         sellerService.saveSeller(sellerAndUser);
     }
 
 
     // create new seller
+
     @RequestMapping(method = RequestMethod.POST)
-    public Seller createSeller(@RequestBody SellerAndUser sellerAndUser) throws Exception {
+    public Seller createSeller(@RequestBody SellerAndUser sellerAndUser){
         return sellerService.saveSeller(sellerAndUser);
     }
 
 
     // delete seller
+
     @RequestMapping(method = RequestMethod.DELETE)
-    public void deleteSellerById(@PathParam("id") int id) {
+    public void deleteSellerById(@PathParam("id") int id) throws Exception {
         sellerService.deleteSellerById(id);
     }
 }
